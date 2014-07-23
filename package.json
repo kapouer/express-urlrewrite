@@ -1,0 +1,24 @@
+{
+  "name": "express-urlrewrite",
+  "description": "URL rewrite middleware for express",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kapouer/express-urlrewrite"
+  },
+  "version": "1.0.0",
+  "keywords": [
+    "express",
+    "middleware",
+    "rewrite",
+    "redirect",
+    "url"
+  ],
+  "files": [
+    "index.js"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "debug": "*",
+    "path-to-regexp": "0.0.2"
+  }
+}
