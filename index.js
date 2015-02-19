@@ -5,6 +5,7 @@
 
  var debug = require('debug')('express-urlrewrite');
  var toRegexp = require('path-to-regexp');
+ var URL = require('url');
 
 /**
  * Expose `expose`.
@@ -38,6 +39,12 @@ function rewrite(src, dst) {
         return m[n];
       });
       debug('rewrite %s -> %s', orig, req.url);
+
+      if (req.url.indexOf('?') > 0) {
+        req.query = URL.parse(req.url, true).query;
+        debug('rewrite updated new query', req.query);
+      }
+
     }
 
     next();
