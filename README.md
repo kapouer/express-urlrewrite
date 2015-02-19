@@ -28,7 +28,7 @@ for example `/js/vendor/jquery.js` would become
 app.use(rewrite('/js/*', '/public/assets/js/$1'));
 ```
 
-In the above examples, the query string (if any) is left untouched.
+In the above examples, the original query string (if any) is left untouched.
 The regular expression is applied to the full url, so the query string
 can be modified as well:
 
@@ -38,6 +38,15 @@ app.use(rewrite('/file\\?param=:param', '/file/:param'))
 
 The query string delimiter (?) must be escaped for the regular expression
 to work.
+
+## New in version 1.1
+
+```js
+app.use(rewrite('/path', '/anotherpath?param=some'))
+```
+
+now updates req.query, so `req.query.param == 'some'`.
+
 
 ## Debugging
 
