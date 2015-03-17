@@ -23,31 +23,42 @@ module.exports = rewrite;
  */
 
 function rewrite(src, dst) {
-  var keys = [];
-  var re = toRegexp(src, keys);
-  var map = toMap(keys);
+  var keys = [], re, map;
 
-  debug('rewrite %s -> %s    %s', src, dst, re);
+  if (dst) {
+    re = toRegexp(src, keys);
+    map = toMap(keys);
+    debug('rewrite %s -> %s    %s', src, dst, re);
+  } else {
+    debug('rewrite current route -> %s', src);
+  }
 
-  return function(req, res, next){
+  return function(req, res, next) {
     var orig = req.url;
-    var m = re.exec(orig);
-
-    if (m) {
-      req.url = dst.replace(/\$(\d+)|(?::(\w+))/g, function(_, n, name){
-        if (name) return m[map[name].index + 1];
-        return m[n];
-      });
-      debug('rewrite %s -> %s', orig, req.url);
-
-      if (req.url.indexOf('?') > 0) {
-        req.query = URL.parse(req.url, true).query;
-        debug('rewrite updated new query', req.query);
+    var m;
+    if (dst) {
+      m = re.exec(orig);
+      if (!m) {
+        return next();
       }
-
     }
-
-    next();
+    req.url = dst.replace(/\$(\d+)|(?::(\w+))/g, function(_, n, name) {
+      if (name) {
+        if (m) return m[map[name].index + 1];
+        else return req.params[name];
+      } else if (m) {
+        return m[n];
+      } else {
+        return req.params[n];
+      }
+    });
+    debug('rewrite %s -> %s', orig, req.url);
+    if (req.url.indexOf('?') > 0) {
+      req.query = URL.parse(req.url, true).query;
+      debug('rewrite updated new query', req.query);
+    }
+    if (dst) next();
+    else next('route');
   }
 }
 
@@ -62,7 +73,7 @@ function rewrite(src, dst) {
 function toMap(params) {
   var map = {};
 
-  params.forEach(function(param, i){
+  params.forEach(function(param, i) {
     param.index = i;
     map[param.name] = param;
   });
