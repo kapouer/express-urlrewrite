@@ -42,7 +42,7 @@ function rewrite(src, dst) {
         return next();
       }
     }
-    req.url = dst.replace(/\$(\d+)|(?::(\w+))/g, function(_, n, name) {
+    req.url = (dst || src).replace(/\$(\d+)|(?::(\w+))/g, function(_, n, name) {
       if (name) {
         if (m) return m[map[name].index + 1];
         else return req.params[name];
