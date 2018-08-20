@@ -73,7 +73,6 @@ function rewrite(src, dst, flags) {
       var urlObj=URL.parse(req.url, true);
       urlObj.query=Object.assign(origQuery, urlObj.query)
       delete urlObj.search;
-      console.log("urlObj", urlObj.query)
       req.url=req.originalUrl=URL.format(urlObj)
 
     }
@@ -81,8 +80,8 @@ function rewrite(src, dst, flags) {
       req.query = URL.parse(req.url, true).query;
       debug('rewrite updated new query', req.query);
     }
-    console.log("received->", req.url)
-    console.log("origOrig->", origOrig)
+    debug("received->", req.url)
+    debug("origOrig->", origOrig)
     if (dst) next();
     else next('route');
   }
