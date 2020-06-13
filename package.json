@@ -9,6 +9,7 @@
     "test": "NODE_ENV=test nyc mocha"
   },
   "version": "1.2.0",
+  "types": "index.d.ts",
   "keywords": [
     "express",
     "middleware",
