@@ -22,7 +22,7 @@ module.exports = rewrite;
  * @api public
  */
 
-function rewrite(src, dst) {
+function rewrite(src, dst, flags) {
   var keys = [], re, map;
 
   if (dst) {
@@ -32,9 +32,25 @@ function rewrite(src, dst) {
   } else {
     debug('rewrite current route -> %s', src);
   }
+  var qsa=false;
+  if(flags && Array.isArray(flags)){
+    flags.forEach(function(flag){if(flag==="QSA") qsa=true})
+  }
+  debug('QSA flag enabled? ->', qsa)
 
   return function(req, res, next) {
     var orig = req.url;
+    var origQuery;
+    var origOrig;
+
+    if(qsa){
+      var parsed=URL.parse(orig, true)
+      origQuery=parsed.query
+      debug('orig query params', origQuery)
+      origOrig=orig;
+      orig=parsed.pathname
+    }
+
     var m;
     if (dst) {
       m = re.exec(orig);
@@ -53,10 +69,19 @@ function rewrite(src, dst) {
       }
     });
     debug('rewrite %s -> %s', orig, req.url);
+    if(qsa){
+      var urlObj=URL.parse(req.url, true);
+      urlObj.query=Object.assign(origQuery, urlObj.query)
+      delete urlObj.search;
+      req.url=req.originalUrl=URL.format(urlObj)
+
+    }
     if (req.url.indexOf('?') > 0) {
       req.query = URL.parse(req.url, true).query;
       debug('rewrite updated new query', req.query);
     }
+    debug("received->", req.url)
+    debug("origOrig->", origOrig)
     if (dst) next();
     else next('route');
   }
