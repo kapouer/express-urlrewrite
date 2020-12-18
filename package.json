@@ -19,7 +19,7 @@
     "url"
   ],
   "files": [
-    "index.js"
+    "index.*"
   ],
   "license": "MIT",
   "dependencies": {
