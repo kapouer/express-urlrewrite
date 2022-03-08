@@ -1,8 +1,6 @@
-express-urlrewrite
-==================
+# express-urlrewrite
 
 URL rewrite middleware for express.
-
 
 ## Examples
 
@@ -47,10 +45,10 @@ app.use(rewrite('/path', '/anotherpath?param=some'))
 
 now updates req.query, so `req.query.param == 'some'`.
 
-
 ## New in version 1.2
 
 rewrite can be used as a route middleware as in
+
 ```js
 app.get('/route/:var', rewrite('/rewritten/:var'));
 
@@ -58,7 +56,6 @@ app.get('/rewritten/:var', someMw);
 ```
 
 Instead of passing control to next middleware, it passes control to next route.
-
 
 ## Debugging
 
