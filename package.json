@@ -1,5 +1,6 @@
 {
   "name": "express-urlrewrite",
+  "version": "2.0.0",
   "description": "URL rewrite middleware for express",
   "repository": {
     "type": "git",
@@ -8,7 +9,6 @@
   "scripts": {
     "test": "NODE_ENV=test nyc mocha"
   },
-  "version": "1.4.0",
   "main": "index.js",
   "types": "index.d.ts",
   "keywords": [
