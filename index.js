@@ -27,6 +27,7 @@ function rewrite(src, dst) {
 	let re, map;
 
 	if (dst) {
+		if (typeof src == "string") src = src.replace(/\*/g, '(.*)');
 		re = pathToRegexp(src, keys);
 		map = toMap(keys);
 		debug('rewrite %s -> %s    %s', src, dst, re);
