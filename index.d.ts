@@ -1,17 +1,17 @@
 // https://github.com/kapouer/express-urlrewrite
 declare module "express-urlrewrite" {
-    import * as Http from "http";
+	import * as Http from "http";
 
-    let modName: urlRewrite.urlrewrite;
-    module urlRewrite {
+	let modName: urlRewrite.urlrewrite;
+	module urlRewrite {
 
-        interface urlrewrite {
-            (from: string, to?: string): expressUrlRewriteInstance
-        }
+		interface urlrewrite {
+			(from: string, to?: string): expressUrlRewriteInstance
+		}
 
-        interface expressUrlRewriteInstance {
-            (req: Http.IncomingMessage, res: Http.ServerResponse, cb: () => any): void
-        }
-    }
-    export = modName;
+		interface expressUrlRewriteInstance {
+			(req: Http.IncomingMessage, res: Http.ServerResponse, cb: () => any): void
+		}
+	}
+	export = modName;
 }
