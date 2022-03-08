@@ -59,7 +59,7 @@ describe('rewrite tests', function () {
       rewriteFunc = rewrite('/:src..:dst', '/commits/$1/to/$2');
     });
 
-    it('rewrites if path matches', function () {
+    it('rewrites if path matches 2', function () {
       req.url = '/foo..bar';
 
       rewriteFunc(req, res, next);
@@ -68,7 +68,7 @@ describe('rewrite tests', function () {
       expect(next).to.have.been.calledWith();
     });
 
-    it('does not rewrite if path does not match', function () {
+    it('does not rewrite if path does not match 2', function () {
       testNegativeCase(rewriteFunc, req, res, next);
     });
   });
