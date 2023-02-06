@@ -23,15 +23,15 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "debug": "^4.3.3",
-    "path-to-regexp": "^6.2.0"
+    "debug": "^4.3.4",
+    "path-to-regexp": "^6.2.1"
   },
   "devDependencies": {
-    "@kapouer/eslint-config": "^1.6.2",
-    "chai": "^4.3.6",
-    "mocha": "^9.2.1",
+    "@kapouer/eslint-config": "^1.9.0",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
     "nyc": "^15.1.0",
-    "sinon": "^13.0.1",
+    "sinon": "^15.0.1",
     "sinon-chai": "^3.7.0"
   },
   "eslintConfig": {
