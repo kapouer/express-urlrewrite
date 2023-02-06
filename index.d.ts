@@ -6,7 +6,7 @@ declare module "express-urlrewrite" {
 	module urlRewrite {
 
 		interface urlrewrite {
-			(from: string, to?: string): expressUrlRewriteInstance
+			(from: string | RegExp, to?: string): expressUrlRewriteInstance
 		}
 
 		interface expressUrlRewriteInstance {
