@@ -27,11 +27,11 @@
     "path-to-regexp": "^6.2.1"
   },
   "devDependencies": {
-    "@kapouer/eslint-config": "^1.9.0",
-    "chai": "^4.3.7",
-    "mocha": "^10.2.0",
+    "@kapouer/eslint-config": "^2.0.0",
+    "chai": "^5.1.0",
+    "mocha": "^10.4.0",
     "nyc": "^15.1.0",
-    "sinon": "^15.0.1",
+    "sinon": "^17.0.1",
     "sinon-chai": "^3.7.0"
   },
   "eslintConfig": {

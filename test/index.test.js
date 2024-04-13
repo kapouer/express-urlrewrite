@@ -1,9 +1,6 @@
-const chai = require('chai');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 
-chai.use(sinonChai);
-const { expect } = chai;
 const rewrite = require('../index');
 
 describe('rewrite tests', () => {
@@ -11,6 +8,14 @@ describe('rewrite tests', () => {
 	let req;
 	let res;
 	let next;
+
+	let expect;
+
+	before(async () => {
+		const chai = await import('chai');
+		chai.use(sinonChai);
+		expect = chai.expect;
+	});
 
 	beforeEach(() => {
 		req = {
