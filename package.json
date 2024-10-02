@@ -1,6 +1,6 @@
 {
   "name": "express-urlrewrite",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "URL rewrite middleware for express",
   "repository": {
     "type": "git",
