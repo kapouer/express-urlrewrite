@@ -24,7 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "debug": "^4.3.4",
-    "path-to-regexp": "^6.2.2"
+    "path-to-regexp": "^6.3.0"
   },
   "devDependencies": {
     "@kapouer/eslint-config": "^2.0.0",
